@@ -12,5 +12,9 @@
     "@tailwindcss/vite": "^4.1.4",
     "astro": "^5.7.9",
     "tailwindcss": "^4.1.4"
+  },
+  "devDependencies": {
+    "@iconify/json": "^2.2.333",
+    "@iconify/tailwind4": "^1.0.6"
   }
 }
