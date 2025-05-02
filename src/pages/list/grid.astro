@@ -1,0 +1,54 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PostCard from "../../components/Card.astro";
+import { faker } from "@faker-js/faker";
+
+// Generate fake category object
+const generateCategory = () => ({
+  id: faker.string.uuid(),
+  name: faker.helpers.arrayElement([
+    "Technology",
+    "Business",
+    "Health",
+    "Travel",
+    "Food",
+  ]),
+  slug: faker.helpers.slugify(faker.lorem.word()),
+});
+
+// Generate fake posts
+const generateFakePosts = (count = 5) => {
+  return Array.from({ length: count }, (_, i) => ({
+    title: faker.lorem.sentence(),
+    date: faker.date.recent({ days: 30 }).toISOString(),
+    excerpt: `<p>${faker.lorem.paragraphs(1)}</p>`,
+    slug: faker.helpers.slugify(faker.lorem.words(3)),
+    image: `https://picsum.photos/400/300?random=${i}`,
+    author: faker.person.fullName(),
+    category: generateCategory(),
+  }));
+};
+
+const posts = generateFakePosts(5);
+---
+
+<Layout>
+  <main class="container">
+    <h1>Blog Posts</h1>
+    <section>
+      {
+        posts.map((post) => (
+          <PostCard
+            title={post.title}
+            date={post.date}
+            excerpt={post.excerpt}
+            slug={post.slug}
+            image={post.image}
+            author={post.author}
+            category={post.category}
+          />
+        ))
+      }
+    </section>
+  </main>
+</Layout>

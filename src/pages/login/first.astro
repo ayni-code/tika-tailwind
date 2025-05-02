@@ -1,0 +1,68 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout>
+  <div class="bg-gray-100 flex justify-center items-center min-h-screen">
+    <div class="bg-white rounded-lg shadow-md p-8 w-96 text-center">
+      <div
+        class="bg-rose-500 rounded-full w-16 h-16 flex justify-center items-center mx-auto mb-5"
+      >
+        <span class="text-5xl text-white icon-[mdi-light--home]"></span>
+      </div>
+      <form action="#" method="POST">
+        <div class="mb-4 text-left">
+          <label
+            for="username"
+            class="block text-gray-700 text-sm font-bold mb-2"
+            ><i class="fas fa-user mr-2"></i> Usuario</label
+          >
+          <input
+            type="text"
+            id="username"
+            name="username"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            placeholder="Ingresa tu usuario"
+          />
+        </div>
+        <div class="mb-6 text-left">
+          <label
+            for="password"
+            class="block text-gray-700 text-sm font-bold mb-2"
+            ><i class="fas fa-lock mr-2"></i> Contraseña</label
+          >
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            placeholder="Ingresa tu contraseña"
+          />
+        </div>
+        <div
+          class="flex items-center justify-between mb-6 text-sm text-gray-500"
+        >
+          <label class="flex items-center">
+            <input
+              type="checkbox"
+              class="form-checkbox h-4 w-4 text-rose-500 focus:ring-rose-500 mr-2"
+            />
+            Recordarme
+          </label>
+          <a
+            href="#"
+            class="inline-block align-baseline font-semibold text-rose-500 hover:text-rose-800"
+          >
+            ¿Olvidaste tu contraseña?
+          </a>
+        </div>
+        <button
+          type="submit"
+          class="bg-rose-500 hover:bg-rose-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+        >
+          Login
+        </button>
+      </form>
+    </div>
+  </div>
+</Layout>
