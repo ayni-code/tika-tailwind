@@ -3,65 +3,98 @@ import Layout from "../../layouts/Layout.astro";
 ---
 
 <Layout>
-  <div class="bg-gray-100 flex justify-center items-center min-h-screen">
-    <div class="bg-white rounded-lg shadow-md p-8 w-96 text-center">
+  <div
+    class="bg-gradient-to-br from-rose-50 to-gray-100 flex justify-center items-center min-h-screen p-4"
+  >
+    <div class="bg-white rounded-xl shadow-lg p-8 w-full max-w-md text-center">
       <div
-        class="bg-rose-500 rounded-full w-16 h-16 flex justify-center items-center mx-auto mb-5"
+        class="bg-rose-500 rounded-full w-16 h-16 flex justify-center items-center mx-auto mb-6 shadow-md"
       >
-        <span class="text-5xl text-white icon-[mdi-light--home]"></span>
+        <span class="text-4xl text-white icon-[mdi--shield-account]"></span>
       </div>
-      <form action="#" method="POST">
-        <div class="mb-4 text-left">
+
+      <h1 class="text-2xl font-bold text-gray-800 mb-2">Bienvenido de nuevo</h1>
+      <p class="text-gray-500 mb-6">Inicia sesión para acceder a tu cuenta</p>
+
+      <form action="#" method="POST" class="space-y-5">
+        <div>
           <label
             for="username"
-            class="block text-gray-700 text-sm font-bold mb-2"
-            ><i class="fas fa-user mr-2"></i> Usuario</label
+            class="block text-gray-700 text-sm font-medium mb-2 text-left"
           >
-          <input
-            type="text"
-            id="username"
-            name="username"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Ingresa tu usuario"
-          />
+            Nombre de usuario
+          </label>
+          <div class="relative">
+            <span
+              class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 icon-[mdi--account]"
+            ></span>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-300 focus:border-rose-400 outline-none transition"
+              placeholder="Ej: usuario123"
+              autocomplete="username"
+            />
+          </div>
         </div>
-        <div class="mb-6 text-left">
+
+        <div>
           <label
             for="password"
-            class="block text-gray-700 text-sm font-bold mb-2"
-            ><i class="fas fa-lock mr-2"></i> Contraseña</label
+            class="block text-gray-700 text-sm font-medium mb-2 text-left"
           >
-          <input
-            type="password"
-            id="password"
-            name="password"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Ingresa tu contraseña"
-          />
-        </div>
-        <div
-          class="flex items-center justify-between mb-6 text-sm text-gray-500"
-        >
-          <label class="flex items-center">
-            <input
-              type="checkbox"
-              class="form-checkbox h-4 w-4 text-rose-500 focus:ring-rose-500 mr-2"
-            />
-            Recordarme
+            Contraseña
           </label>
+          <div class="relative">
+            <span
+              class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 icon-[mdi--lock]"
+            ></span>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-300 focus:border-rose-400 outline-none transition"
+              placeholder="••••••••"
+              autocomplete="current-password"
+            />
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <input
+              id="remember-me"
+              name="remember-me"
+              type="checkbox"
+              class="h-4 w-4 text-rose-500 focus:ring-rose-500 border-gray-300 rounded"
+            />
+            <label for="remember-me" class="ml-2 block text-sm text-gray-700">
+              Recordar sesión
+            </label>
+          </div>
+
           <a
             href="#"
-            class="inline-block align-baseline font-semibold text-rose-500 hover:text-rose-800"
+            class="text-sm font-medium text-rose-500 hover:text-rose-700"
           >
-            ¿Olvidaste tu contraseña?
+            ¿Contraseña olvidada?
           </a>
         </div>
+
         <button
           type="submit"
-          class="bg-rose-500 hover:bg-rose-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+          class="w-full bg-rose-500 hover:bg-rose-600 text-white font-medium py-2.5 px-4 rounded-lg shadow-md transition duration-200 focus:outline-none focus:ring-2 focus:ring-rose-400 focus:ring-offset-2"
         >
-          Login
+          Iniciar sesión
         </button>
+
+        <p class="text-sm text-gray-500 mt-4">
+          ¿No tienes una cuenta?
+          <a href="#" class="font-medium text-rose-500 hover:text-rose-700">
+            Regístrate
+          </a>
+        </p>
       </form>
     </div>
   </div>

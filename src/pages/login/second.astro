@@ -4,63 +4,104 @@ import Layout from "../../layouts/Layout.astro";
 
 <Layout>
   <div
-    class="relative bg-indigo-400 flex justify-center items-center h-screen overflow-hidden"
+    class="relative min-h-screen bg-indigo-50 flex justify-center items-center overflow-hidden p-4"
   >
-    <div
-      class="hidden md:block z-1 absolute inset-0 -top-24 -left-32 rotate-45 rounded-4xl bg-white w-lg h-lg"
-    >
+    <!-- Fondo animado con figuras grandes -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div
+        class="absolute -top-40 -left-40 w-[500px] h-[500px] bg-indigo-200 rounded-[100px] opacity-30 animate-float1 rotate-12"
+      >
+      </div>
+      <div
+        class="absolute -bottom-40 -right-40 w-[450px] h-[450px] bg-purple-300 rounded-full opacity-30 animate-float2 -rotate-12"
+      >
+      </div>
     </div>
 
-    <div
-      class="z-0 absolute inset-0 -top-96 -right-32 block rotate-20 rounded-4xl bg-indigo-600 w-lg h-lg"
-    >
-    </div>
-
-    <div class="z-10 flex flex-col gap-y-8 w-64">
-      <div class="relative">
-        <div class="absolute left-1 top-1/2 -translate-y-1/2">
-          <span class="text-xl text-gray-500 mt-1 icon-[bxs--user]"></span>
-        </div>
-        <input
-          type="text"
-          placeholder="Username"
-          class="bg-indigo-300 pl-6 p-2 border-b-2 border-b-indigo-600"
-        />
+    <!-- Formulario flotante -->
+    <div class="z-10 w-full max-w-md px-8 py-10">
+      <div class="flex justify-center mb-8">
+        <span class="text-6xl text-indigo-500 icon-[material-symbols--key]"
+        ></span>
       </div>
 
-      <div class="relative">
-        <div class="absolute left-1 top-1/2 -translate-y-1/2">
-          <span class="text-lg text-gray-500 mt-1 icon-[fa6-solid--lock]"
-          ></span>
+      <form class="space-y-6">
+        <!-- Campo de usuario con focus mejorado -->
+        <div class="relative">
+          <div
+            class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 peer-focus-within:text-indigo-500 transition-colors"
+          >
+            <span class="icon-[material-symbols--person]"></span>
+          </div>
+          <input
+            type="text"
+            id="username"
+            class="w-full pl-10 pr-4 py-3 bg-white/90 border-b-2 border-gray-300 focus:border-indigo-500 focus:outline-none peer"
+            placeholder=" "
+          />
+          <label
+            for="username"
+            class="absolute left-10 top-3 text-gray-500 text-sm transition-all duration-200 transform -translate-y-5 scale-75 origin-[0] peer-focus:-translate-y-5 peer-focus:scale-75 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:text-indigo-500"
+          >
+            Usuario
+          </label>
         </div>
-        <input
-          type="text"
-          placeholder="Password"
-          class="bg-indigo-300 pl-6 p-2 border-b-2 border-b-indigo-600"
-        />
-      </div>
 
-      <div class="relative">
-        <div class="absolute left-1 top-1/2 -translate-y-1/2">
-          <span class="text-lg text-gray-500 mt-1 icon-[tabler--alien]"></span>
+        <!-- Campo de contraseña con focus mejorado -->
+        <div class="relative">
+          <div
+            class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 peer-focus-within:text-indigo-500 transition-colors"
+          >
+            <span class="icon-[material-symbols--lock]"></span>
+          </div>
+          <input
+            type="password"
+            id="password"
+            class="w-full pl-10 pr-4 py-3 bg-white/90 border-b-2 border-gray-300 focus:border-indigo-500 focus:outline-none peer"
+            placeholder=" "
+          />
+          <label
+            for="password"
+            class="absolute left-10 top-3 text-gray-500 text-sm transition-all duration-200 transform -translate-y-5 scale-75 origin-[0] peer-focus:-translate-y-5 peer-focus:scale-75 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:text-indigo-500"
+          >
+            Contraseña
+          </label>
         </div>
-        <input
-          type="text"
-          placeholder="edad"
-          class="bg-indigo-300 pl-6 p-2 border-b-2 border-b-indigo-600"
-        />
-      </div>
 
-      <div class="z-10 flex justify-center">
-        <div
-          class="flex items-stretch bg-white py-2 px-8 rounded-full shadow-lg shadow-indigo-950/50"
+        <button
+          type="submit"
+          class="w-full py-3 px-6 bg-indigo-500 hover:bg-indigo-600 text-white font-medium rounded-lg shadow-lg transition-all"
         >
-          <span class="pr-8 uppercase">Log in Now</span>
-          <span
-            class="self-center text-xl text-gray-500 icon-[mingcute--right-line]"
-          ></span>
-        </div>
-      </div>
+          Acceder
+        </button>
+      </form>
     </div>
   </div>
+
+  <style>
+    @keyframes float1 {
+      0%,
+      100% {
+        transform: translate(-50px, -50px) rotate(12deg);
+      }
+      50% {
+        transform: translate(50px, 50px) rotate(15deg);
+      }
+    }
+    @keyframes float2 {
+      0%,
+      100% {
+        transform: translate(40px, 40px) rotate(-12deg);
+      }
+      50% {
+        transform: translate(-40px, -40px) rotate(-15deg);
+      }
+    }
+    .animate-float1 {
+      animation: float1 25s ease-in-out infinite;
+    }
+    .animate-float2 {
+      animation: float2 30s ease-in-out infinite;
+    }
+  </style>
 </Layout>
