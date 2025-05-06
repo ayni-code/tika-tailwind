@@ -17,21 +17,47 @@ interface Props {
 const { title, date, excerpt, slug, image, author, category } = Astro.props;
 ---
 
-<article>
-  {image && <img src={image} alt={title} width="600" height="400" />}
+<article class="rounded-md shadow-2xl overflow-hidden">
+  {
+    image && (
+      <img src={image} alt={title} class="w-full aspect-video object-cover" />
+    )
+  }
 
-  {category && <span>{category.name}</span>}
+  <div class="flex flex-col-reverse md:flex-col p-8 gap-y-4">
+    {
+      category && (
+        <span class="text-center text-orange-500 text-sm font-bold uppercase">
+          {category.name}
+        </span>
+      )
+    }
 
-  <h2>
-    <a href={`/blog/${slug}`}>{title}</a>
-  </h2>
-
-  <div>
-    <time datetime={date}>{new Date(date).toLocaleDateString()}</time>
-    {author && <span> by {author}</span>}
+    <h2 class="text-center text-3xl font-bold">
+      <a href={`/blog/${slug}`}>{title}</a>
+    </h2>
+    <div class="text-center text-gray-500" set:html={excerpt} />
+    <div></div>
+    <a
+      href={`/blosg/${slug}`}
+      class="mx-auto text-center p-8 border-1 border-gray-500 rounded-md"
+      >Read more</a
+    >
   </div>
 
-  <div set:html={excerpt} />
-
-  <a href={`/blog/${slug}`}>Read more</a>
+  <div class="grid grid-cols-1 md:grid-cols-3 bg-orange-500">
+    <time
+      datetime={date}
+      class="px-4 py-8 text-center text-white border-b-1 md:border-b-0 border-b-orange-700 md:border-r-1 md:border-r-orange-700"
+      >{new Date(date).toLocaleDateString()}</time
+    >
+    <div class="px-4 py-8 text-center text-white">
+      {author && <span> by {author}</span>}
+    </div>
+    <div
+      class="px-4 py-8 text-center text-white border-t-1 md:border-t-0 border-t-orange-700 md:border-l-1 md:border-l-orange-700"
+    >
+      Comment &&{(<span> 13</span>)}
+    </div>
+  </div>
 </article>

@@ -1,52 +1,29 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import PostCard from "../../components/Card.astro";
-import { faker } from "@faker-js/faker";
+import { generateFakePosts } from "../../lib/fakeData";
 
-// Generate fake category object
-const generateCategory = () => ({
-  id: faker.string.uuid(),
-  name: faker.helpers.arrayElement([
-    "Technology",
-    "Business",
-    "Health",
-    "Travel",
-    "Food",
-  ]),
-  slug: faker.helpers.slugify(faker.lorem.word()),
-});
-
-// Generate fake posts
-const generateFakePosts = (count = 5) => {
-  return Array.from({ length: count }, (_, i) => ({
-    title: faker.lorem.sentence(),
-    date: faker.date.recent({ days: 30 }).toISOString(),
-    excerpt: `<p>${faker.lorem.paragraphs(1)}</p>`,
-    slug: faker.helpers.slugify(faker.lorem.words(3)),
-    image: `https://picsum.photos/400/300?random=${i}`,
-    author: faker.person.fullName(),
-    category: generateCategory(),
-  }));
-};
-
-const posts = generateFakePosts(5);
+const posts = generateFakePosts(6);
 ---
 
 <Layout>
-  <main class="container p-8">
+  <main class="container p-8 mx-auto">
     <h1>Blog Posts</h1>
-    <section>
+
+    <section class="w-full -mx-4 flex flex-row flex-wrap">
       {
         posts.map((post) => (
-          <PostCard
-            title={post.title}
-            date={post.date}
-            excerpt={post.excerpt}
-            slug={post.slug}
-            image={post.image}
-            author={post.author}
-            category={post.category}
-          />
+          <div class="md:basis-1/3 p-4">
+            <PostCard
+              title={post.title}
+              date={post.date}
+              excerpt={post.excerpt}
+              slug={post.slug}
+              image={post.image}
+              author={post.author}
+              category={post.category}
+            />
+          </div>
         ))
       }
     </section>
