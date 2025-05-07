@@ -1,0 +1,113 @@
+---
+export interface Props {
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
+  variant?: "default" | "primary" | "secondary" | "danger" | "text" | "link";
+  size?: "sm" | "md" | "lg";
+  fullWidth?: boolean;
+  asLink?: boolean;
+  href?: string;
+  className?: string;
+}
+
+const {
+  type = "button",
+  disabled = false,
+  variant = "default",
+  size = "md",
+  fullWidth = false,
+  asLink = false,
+  href = "#",
+  className = "",
+} = Astro.props;
+---
+
+{
+  asLink ? (
+    <a
+      href={href}
+      class={`
+      btn
+      btn-${variant}
+      ${size === "sm" ? "btn-sm" : ""}
+      ${size === "lg" ? "btn-lg" : ""}
+      ${fullWidth ? "w-full" : ""}
+      ${className}
+    `}
+      aria-disabled={disabled}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button
+      type={type}
+      disabled={disabled}
+      class={`
+      btn
+      btn-${variant}
+      ${size === "sm" ? "btn-sm" : ""}
+      ${size === "lg" ? "btn-lg" : ""}
+      ${fullWidth ? "w-full" : ""}
+      ${className}
+    `}
+    >
+      <slot />
+    </button>
+  )
+}
+
+<style is:global>
+  @reference "tailwindcss";
+
+  .btn {
+    @apply font-medium rounded text-center cursor-pointer transition-all duration-200;
+    @apply inline-flex items-center justify-center;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+    @apply border border-transparent;
+  }
+
+  /* Tamaños */
+  .btn-sm {
+    @apply py-1.5 px-3 text-sm;
+  }
+  .btn-md {
+    @apply py-2 px-4 text-base;
+  }
+  .btn-lg {
+    @apply py-3 px-6 text-lg;
+  }
+
+  /* Variantes */
+  .btn-default {
+    @apply bg-gray-100 text-gray-800 hover:bg-gray-200 focus:ring-gray-300;
+    @apply border border-gray-300;
+  }
+  .btn-primary {
+    @apply bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500;
+  }
+  .btn-secondary {
+    @apply bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500;
+  }
+  .btn-danger {
+    @apply bg-red-600 text-white hover:bg-red-700 focus:ring-red-500;
+  }
+  .btn-text {
+    @apply text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:ring-gray-300;
+    @apply bg-transparent border-none shadow-none;
+  }
+  .btn-link {
+    @apply text-blue-600 hover:text-blue-800 underline;
+    @apply bg-transparent border-none shadow-none focus:ring-blue-300;
+  }
+
+  /* Estado disabled */
+  .btn[disabled],
+  .btn[aria-disabled="true"] {
+    @apply opacity-60 cursor-not-allowed;
+  }
+
+  /* Full width */
+  .w-full.btn {
+    @apply block w-full;
+  }
+</style>

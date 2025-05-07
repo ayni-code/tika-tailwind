@@ -1,0 +1,17 @@
+---
+// src/components/ButtonGroup.astro
+---
+
+<div class="btn-group">
+  <slot />
+</div>
+
+<style is:global>
+  .btn-group {
+    @apply inline-flex flex-wrap items-center;
+    @apply [&>.btn]:rounded-none;
+    @apply [&>.btn:first-child]:rounded-l-md;
+    @apply [&>.btn:last-child]:rounded-r-md;
+    @apply [&>.btn:not(:first-child)]:-ml-px;
+  }
+</style>
