@@ -1,2 +1,17 @@
 @import "tailwindcss";
+
 @plugin "@iconify/tailwind4";
+
+@theme {
+  --color-chocolate-50: #faf5f3;
+  --color-chocolate-100: #f5ebe6;
+  --color-chocolate-200: #e8ddd8;
+  --color-chocolate-300: #dbb6a9;
+  --color-chocolate-400: #cf917e;
+  --color-chocolate-500: #c26d57;
+  --color-chocolate-600: #b54a35;
+  --color-chocolate-700: #8f3122;
+  --color-chocolate-800: #691c14;
+  --color-chocolate-900: #420d09;
+  --color-chocolate-950: #1c0404;
+}
