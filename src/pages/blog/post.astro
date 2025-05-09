@@ -1,0 +1,194 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { generateFakePosts } from "../../lib/fakeData";
+import { faker } from "@faker-js/faker"; // Importar faker
+
+const posts = generateFakePosts(5);
+const post = posts[0];
+const formattedDate = new Date(post.date).toLocaleDateString("es-ES", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+// Generar datos de comentarios en el frontmatter
+const comments = [
+  {
+    avatar: faker.image.avatar(),
+    name: faker.person.fullName(),
+    date: faker.date.recent().toISOString(),
+    content: faker.lorem.sentence(),
+  },
+  {
+    avatar: faker.image.avatar(),
+    name: faker.person.fullName(),
+    date: faker.date.recent().toISOString(),
+    content: faker.lorem.sentence(),
+  },
+];
+
+const imageCaption = faker.lorem.sentence(); // Generar caption para la imagen
+---
+
+<Layout>
+  <main class="">
+    <article class="container mx-auto p-8">
+      <header class="flex flex-col gap-y-8">
+        <span class="w-fit bg-red-500 hover:bg-red-600 text-white px-6 py-2"
+          ><a href={`/categoria/${post.category.slug}`}>{post.category.name}</a
+          ></span
+        >
+        <h1 class="text-6xl font-black uppercase tracking-wide">
+          {post.title}
+        </h1>
+
+        <div class="text-gray-400">
+          <span
+            >Publicado el <time class="text-red-700" datetime={post.date}
+              >{formattedDate}</time
+            ></span
+          >
+          <span
+            >por <a
+              class="underline hover:underline-offset-2"
+              href={`/autor/${post.author.slug}`}>{post.author.name}</a
+            ></span
+          >
+        </div>
+
+        <div class="flex items-baseline">
+          <span class="mr-2 uppercase text-sm text-red-400">Etiquetas:</span>
+          <ul class="flex">
+            {
+              post.tags.map((tag) => (
+                <li class="after:content-['/'] after:text-red-400 after:px-1 last:after:hidden">
+                  <a href={`/etiqueta/${tag.slug}`}>{tag.name}</a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </header>
+      <br />
+
+      <div>
+        <img
+          src={post.image}
+          alt={post.title}
+          class="w-full aspect-square md:aspect-video"
+        />
+        <p class="mt-2 text-right italic text-gray-500">{imageCaption}</p>
+      </div>
+      <br />
+      <br />
+
+      <div class="prose" set:html={post.content} />
+
+      <br />
+      <br />
+      <br />
+      <footer>
+        <div class="flex flex-col gap-y-4">
+          <div class="flex gap-x-2">
+            <span class="text-red-700">Compartir:</span>
+            <a href="#">Twitter</a>
+            <a href="#">Facebook</a>
+            <a href="#">LinkedIn</a>
+          </div>
+
+          <div class="flex justify-between">
+            <a class="bg-black text-white hover:bg-gray-700 px-4 py-2" href="#"
+              >← Post anterior</a
+            >
+            <a class="bg-black text-white hover:bg-gray-700 px-4 py-2" href="#"
+              >Siguiente post →</a
+            >
+          </div>
+        </div>
+        <br />
+
+        <div>
+          <h3 class="text-xl">Comentarios ({comments.length})</h3>
+          <br />
+          <div class="grid gap-y-4">
+            {
+              comments.map((comment) => (
+                <div class="flex gap-x-4 border border-gray-200 p-3">
+                  <img
+                    class="w-24 aspect-square object-cover"
+                    src={comment.avatar}
+                    alt="Avatar de usuario"
+                  />
+                  <div>
+                    <h4>{comment.name}</h4>
+                    <time datetime={comment.date}>
+                      {new Date(comment.date).toLocaleDateString("es-ES")}
+                    </time>
+                    <p>{comment.content}</p>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+
+          <!-- <form>
+            <h4>Deja tu comentario</h4>
+            <div>
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" name="nombre" />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" />
+            </div>
+            <div>
+              <label for="comentario">Comentario</label>
+              <textarea id="comentario" name="comentario" rows="4"></textarea>
+            </div>
+            <button type="submit">Enviar comentario</button>
+          </form> -->
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <aside class="container mx-auto p-8">
+    <h3 class="text-xl font-bold">Sobre el autor</h3>
+    <div class="flex items-center gap-x-2">
+      <img
+        class="w-16"
+        src={post.author.avatar}
+        alt={`Foto de ${post.author.name}`}
+      />
+      <p>{post.author.bio}</p>
+      <a class="underline" href={`/autor/${post.author.slug}`}>
+        Más posts de {post.author.name.split(" ")[0]}
+      </a>
+    </div>
+    <br />
+    <br />
+    <div>
+      <h3 class="text-xl font-bold">Posts relacionados</h3>
+      <ul class="list-decimal list-inside">
+        {
+          posts.slice(1, 4).map((relatedPost) => (
+            <li>
+              <a href={`/blog/${relatedPost.slug}`}>{relatedPost.title}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <br />
+    <br />
+
+    <!-- <div>
+      <h3>Newsletter</h3>
+      <p>Suscríbete para recibir los últimos posts en tu email.</p>
+      <form>
+        <input type="email" placeholder="Tu email" />
+        <button type="submit">Suscribirme</button>
+      </form>
+    </div> -->
+  </aside>
+</Layout>

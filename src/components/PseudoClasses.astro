@@ -1,19 +1,18 @@
 ---
-// src/components/PseudoClassesDemo.astro
 import { generateFakePosts } from "../lib/fakeData";
 
 // Generar datos de prueba
 const posts = generateFakePosts(6);
 const people = posts.slice(0, 6).map((post) => ({
-  name: post.author,
-  email: `${post.author.replace(/\s+/g, ".").toLowerCase()}@example.com`,
-  imageUrl: post.image,
+  name: post.author.name,
+  email: `${post.author.name.replace(/\s+/g, ".").toLowerCase()}@example.com`,
+  imageUrl: post.author.avatar,
 }));
 ---
 
 <div>
-  Sección 1: Lista de autores
-  <!-- <section>
+  <!-- Sección 1: Lista de autores -->
+  <section>
     <h2>Autores Destacados</h2>
     <br />
     <ul class="flex flex-col">
@@ -29,10 +28,10 @@ const people = posts.slice(0, 6).map((post) => ({
         ))
       }
     </ul>
-  </section> -->
+  </section>
 
   <!-- Sección 2: Grid de posts -->
-  <!-- <br />
+  <br />
   <br />
   <br />
   <section>
@@ -59,7 +58,7 @@ const people = posts.slice(0, 6).map((post) => ({
         ))
       }
     </div>
-  </section> -->
+  </section>
 
   <!-- Sección 3: Tabla de contenidos -->
   <section>
