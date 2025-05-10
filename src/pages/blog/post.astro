@@ -1,194 +1,327 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { generateFakePosts } from "../../lib/fakeData";
-import { faker } from "@faker-js/faker"; // Importar faker
+import { generateFakePosts, generateRelatedPosts } from "../../lib/fakeData";
 
 const posts = generateFakePosts(5);
 const post = posts[0];
+const relatedPosts = generateRelatedPosts(posts, 3);
 const formattedDate = new Date(post.date).toLocaleDateString("es-ES", {
   year: "numeric",
   month: "long",
   day: "numeric",
 });
-
-// Generar datos de comentarios en el frontmatter
-const comments = [
-  {
-    avatar: faker.image.avatar(),
-    name: faker.person.fullName(),
-    date: faker.date.recent().toISOString(),
-    content: faker.lorem.sentence(),
-  },
-  {
-    avatar: faker.image.avatar(),
-    name: faker.person.fullName(),
-    date: faker.date.recent().toISOString(),
-    content: faker.lorem.sentence(),
-  },
-];
-
-const imageCaption = faker.lorem.sentence(); // Generar caption para la imagen
 ---
 
 <Layout>
-  <main class="">
-    <article class="container mx-auto p-8">
-      <header class="flex flex-col gap-y-8">
-        <span class="w-fit bg-red-500 hover:bg-red-600 text-white px-6 py-2"
-          ><a href={`/categoria/${post.category.slug}`}>{post.category.name}</a
-          ></span
-        >
-        <h1 class="text-6xl font-black uppercase tracking-wide">
+  <main class="bg-gray-50">
+    <article class="container mx-auto p-4 md:p-8 max-w-5xl">
+      <header class="flex flex-col gap-y-6 mb-8">
+        <!-- Categoría -->
+        <div>
+          <a
+            href={`/categoria/${post.category.slug}`}
+            class="inline-block bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded-md text-sm font-medium"
+            style={`background-color: ${post.category.color}`}
+          >
+            {post.category.name}
+          </a>
+        </div>
+
+        <!-- Título -->
+        <h1 class="text-3xl md:text-5xl font-bold leading-tight text-gray-900">
           {post.title}
         </h1>
 
-        <div class="text-gray-400">
-          <span
-            >Publicado el <time class="text-red-700" datetime={post.date}
-              >{formattedDate}</time
-            ></span
-          >
-          <span
-            >por <a
-              class="underline hover:underline-offset-2"
-              href={`/autor/${post.author.slug}`}>{post.author.name}</a
-            ></span
-          >
+        <!-- Subtítulo -->
+        {
+          post.subtitle && (
+            <h2 class="text-xl md:text-2xl text-gray-600 font-medium">
+              {post.subtitle}
+            </h2>
+          )
+        }
+
+        <!-- Metadatos -->
+        <div class="flex flex-wrap items-center gap-4 text-gray-500 text-sm">
+          <div class="flex items-center gap-2">
+            <img
+              src={post.author.avatar}
+              alt={post.author.name}
+              class="w-8 h-8 rounded-full"
+            />
+            <a
+              href={`/autor/${post.author.slug}`}
+              class="hover:text-red-500 hover:underline"
+            >
+              {post.author.name}
+            </a>
+          </div>
+
+          <span>•</span>
+
+          <time datetime={post.date} class="text-gray-700">
+            {formattedDate}
+          </time>
+
+          <span>•</span>
+
+          <span>{post.readingTime}</span>
+
+          <span>•</span>
+
+          <span>{post.views} vistas</span>
         </div>
 
-        <div class="flex items-baseline">
-          <span class="mr-2 uppercase text-sm text-red-400">Etiquetas:</span>
-          <ul class="flex">
-            {
-              post.tags.map((tag) => (
-                <li class="after:content-['/'] after:text-red-400 after:px-1 last:after:hidden">
-                  <a href={`/etiqueta/${tag.slug}`}>{tag.name}</a>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
+        <!-- Etiquetas -->
+        {
+          post.tags.length > 0 && (
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="text-sm text-gray-500">Etiquetas:</span>
+              <ul class="flex flex-wrap gap-2">
+                {post.tags.map((tag) => (
+                  <li>
+                    <a
+                      href={`/etiqueta/${tag.slug}`}
+                      class="text-xs px-2 py-1 rounded-full bg-gray-100 hover:bg-gray-200"
+                      style={`color: ${tag.color}`}
+                    >
+                      #{tag.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
       </header>
-      <br />
 
-      <div>
+      <!-- Imagen destacada -->
+      <figure class="mb-8">
         <img
           src={post.image}
-          alt={post.title}
-          class="w-full aspect-square md:aspect-video"
+          alt={post.imageAlt || post.title}
+          class="w-full rounded-lg shadow-md aspect-video object-cover"
         />
-        <p class="mt-2 text-right italic text-gray-500">{imageCaption}</p>
-      </div>
-      <br />
-      <br />
+        <figcaption class="mt-2 text-sm text-gray-500 text-center italic">
+          {post.imageAlt}
+        </figcaption>
+      </figure>
 
-      <div class="prose" set:html={post.content} />
+      <!-- Contenido del post -->
+      <div class="prose prose-lg max-w-none mb-12" set:html={post.content} />
 
-      <br />
-      <br />
-      <br />
-      <footer>
-        <div class="flex flex-col gap-y-4">
-          <div class="flex gap-x-2">
-            <span class="text-red-700">Compartir:</span>
-            <a href="#">Twitter</a>
-            <a href="#">Facebook</a>
-            <a href="#">LinkedIn</a>
-          </div>
-
-          <div class="flex justify-between">
-            <a class="bg-black text-white hover:bg-gray-700 px-4 py-2" href="#"
-              >← Post anterior</a
-            >
-            <a class="bg-black text-white hover:bg-gray-700 px-4 py-2" href="#"
-              >Siguiente post →</a
-            >
+      <!-- Pie del artículo -->
+      <footer class="border-t border-gray-200 pt-8">
+        <!-- Compartir -->
+        <div class="flex flex-col gap-4 mb-8">
+          <h3 class="text-lg font-medium text-gray-900">
+            Compartir este artículo
+          </h3>
+          <div class="flex gap-4">
+            <a href="#" class="text-gray-500 hover:text-blue-500">
+              <span class="icon-[mdi--twitter] text-2xl"></span>
+            </a>
+            <a href="#" class="text-gray-500 hover:text-blue-800">
+              <span class="icon-[mdi--facebook] text-2xl"></span>
+            </a>
+            <a href="#" class="text-gray-500 hover:text-red-600">
+              <span class="icon-[mdi--linkedin] text-2xl"></span>
+            </a>
           </div>
         </div>
-        <br />
 
-        <div>
-          <h3 class="text-xl">Comentarios ({comments.length})</h3>
-          <br />
-          <div class="grid gap-y-4">
-            {
-              comments.map((comment) => (
-                <div class="flex gap-x-4 border border-gray-200 p-3">
-                  <img
-                    class="w-24 aspect-square object-cover"
-                    src={comment.avatar}
-                    alt="Avatar de usuario"
-                  />
-                  <div>
-                    <h4>{comment.name}</h4>
-                    <time datetime={comment.date}>
-                      {new Date(comment.date).toLocaleDateString("es-ES")}
-                    </time>
-                    <p>{comment.content}</p>
+        <!-- Navegación entre posts -->
+        <div class="flex flex-col md:flex-row justify-between gap-4 mb-12">
+          <a
+            href="#"
+            class="flex-1 bg-white hover:bg-gray-50 border border-gray-200 rounded-lg p-4"
+          >
+            <span class="text-sm text-gray-500">Anterior</span>
+            <p class="font-medium">Título del post anterior</p>
+          </a>
+          <a
+            href="#"
+            class="flex-1 bg-white hover:bg-gray-50 border border-gray-200 rounded-lg p-4 text-right"
+          >
+            <span class="text-sm text-gray-500">Siguiente</span>
+            <p class="font-medium">Título del siguiente post</p>
+          </a>
+        </div>
+
+        <!-- Comentarios -->
+        {
+          post.comments.length > 0 && (
+            <div class="mb-12">
+              <h3 class="text-xl font-bold mb-6">
+                Comentarios ({post.comments.length})
+              </h3>
+              <div class="space-y-6">
+                {post.comments.map((comment) => (
+                  <div class="flex gap-4 p-4 bg-white rounded-lg shadow-sm">
+                    <img
+                      src={comment.author.avatar}
+                      alt={comment.author.name}
+                      class="w-12 h-12 rounded-full object-cover"
+                    />
+                    <div class="flex-1">
+                      <div class="flex items-center gap-2 mb-1">
+                        <h4 class="font-medium">{comment.author.name}</h4>
+                        <span class="text-xs text-gray-500">
+                          {new Date(comment.date).toLocaleDateString("es-ES")}
+                        </span>
+                      </div>
+                      <p class="text-gray-700">{comment.content}</p>
+                      <button class="mt-2 text-sm text-gray-500 hover:text-red-500 flex items-center gap-1">
+                        <span class="icon-[mdi--heart]" />
+                        {comment.likes} Me gusta
+                      </button>
+                    </div>
                   </div>
-                </div>
-              ))
-            }
-          </div>
+                ))}
+              </div>
+            </div>
+          )
+        }
 
-          <!-- <form>
-            <h4>Deja tu comentario</h4>
-            <div>
-              <label for="nombre">Nombre</label>
-              <input type="text" id="nombre" name="nombre" />
+        <!-- Formulario de comentarios -->
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <h4 class="text-lg font-medium mb-4">Deja tu comentario</h4>
+          <form class="space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label
+                  for="nombre"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Nombre</label
+                >
+                <input
+                  type="text"
+                  id="nombre"
+                  name="nombre"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  for="email"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Email</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                  required
+                />
+              </div>
             </div>
             <div>
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" />
+              <label
+                for="comentario"
+                class="block text-sm font-medium text-gray-700 mb-1"
+                >Comentario</label
+              >
+              <textarea
+                id="comentario"
+                name="comentario"
+                rows="4"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                required></textarea>
             </div>
-            <div>
-              <label for="comentario">Comentario</label>
-              <textarea id="comentario" name="comentario" rows="4"></textarea>
-            </div>
-            <button type="submit">Enviar comentario</button>
-          </form> -->
+            <button
+              type="submit"
+              class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-md"
+            >
+              Enviar comentario
+            </button>
+          </form>
         </div>
       </footer>
     </article>
+
+    <!-- Sidebar -->
+    <aside class="container mx-auto p-4 md:p-8 max-w-5xl">
+      <!-- Sobre el autor -->
+      <div class="bg-white p-6 rounded-lg shadow-sm mb-8">
+        <h3 class="text-xl font-bold mb-4">Sobre el autor</h3>
+        <div class="flex flex-col md:flex-row gap-6">
+          <img
+            src={post.author.avatar}
+            alt={`Foto de ${post.author.name}`}
+            class="w-24 h-24 rounded-full object-cover self-start"
+          />
+          <div>
+            <h4 class="text-lg font-medium mb-1">{post.author.name}</h4>
+            <p class="text-gray-600 mb-2">{post.author.bio}</p>
+            <p class="text-sm text-gray-500 mb-4">{post.author.role}</p>
+            <div class="flex gap-3">
+              <a href="#" class="text-gray-500 hover:text-blue-400">
+                <span class="icon-[mdi--twitter] text-xl"></span>
+              </a>
+              <a href="#" class="text-gray-500 hover:text-blue-700">
+                <span class="icon-[mdi--linkedin] text-xl"></span>
+              </a>
+              <a href="#" class="text-gray-500 hover:text-gray-800">
+                <span class="icon-[mdi--github] text-xl"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Posts relacionados -->
+      {
+        relatedPosts.length > 0 && (
+          <div class="bg-white p-6 rounded-lg shadow-sm mb-8">
+            <h3 class="text-xl font-bold mb-4">Posts relacionados</h3>
+            <div class="space-y-4">
+              {relatedPosts.map((relatedPost) => (
+                <a href={`/blog/${relatedPost.slug}`} class="flex gap-4 group">
+                  <img
+                    src={relatedPost.image}
+                    alt={relatedPost.title}
+                    class="w-20 h-20 rounded object-cover"
+                  />
+                  <div>
+                    <h4 class="font-medium group-hover:text-red-500">
+                      {relatedPost.title}
+                    </h4>
+                    <p class="text-sm text-gray-500">
+                      {relatedPost.readingTime}
+                    </p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        )
+      }
+
+      <!-- Newsletter -->
+      <div
+        class="bg-gradient-to-r from-red-50 to-orange-50 p-6 rounded-lg shadow-sm"
+      >
+        <h3 class="text-xl font-bold mb-2">Newsletter</h3>
+        <p class="text-gray-600 mb-4">
+          Suscríbete para recibir los últimos posts en tu email.
+        </p>
+        <form class="space-y-3">
+          <input
+            type="email"
+            placeholder="Tu email"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
+            required
+          />
+          <button
+            type="submit"
+            class="w-full px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-md"
+          >
+            Suscribirme
+          </button>
+        </form>
+      </div>
+    </aside>
   </main>
-
-  <aside class="container mx-auto p-8">
-    <h3 class="text-xl font-bold">Sobre el autor</h3>
-    <div class="flex items-center gap-x-2">
-      <img
-        class="w-16"
-        src={post.author.avatar}
-        alt={`Foto de ${post.author.name}`}
-      />
-      <p>{post.author.bio}</p>
-      <a class="underline" href={`/autor/${post.author.slug}`}>
-        Más posts de {post.author.name.split(" ")[0]}
-      </a>
-    </div>
-    <br />
-    <br />
-    <div>
-      <h3 class="text-xl font-bold">Posts relacionados</h3>
-      <ul class="list-decimal list-inside">
-        {
-          posts.slice(1, 4).map((relatedPost) => (
-            <li>
-              <a href={`/blog/${relatedPost.slug}`}>{relatedPost.title}</a>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-    <br />
-    <br />
-
-    <!-- <div>
-      <h3>Newsletter</h3>
-      <p>Suscríbete para recibir los últimos posts en tu email.</p>
-      <form>
-        <input type="email" placeholder="Tu email" />
-        <button type="submit">Suscribirme</button>
-      </form>
-    </div> -->
-  </aside>
 </Layout>

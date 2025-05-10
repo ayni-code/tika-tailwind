@@ -1,8 +1,5 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
-
-/* pnpm install -D @tailwindcss/typography*/
-
 @plugin "@iconify/tailwind4";
 
 @theme {
