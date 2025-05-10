@@ -27,15 +27,22 @@ const navItems = [
       { title: "Botones", path: "/ui/buttons-example" },
       { title: "Formularios", path: "/ui/form-styling" },
       { title: "Pseudo-clases", path: "/ui/pseudo-classes-demo" },
+      { title: "Transiciones", path: "/ui/transitions-animations" },
+      { title: "Paleta de Colores", path: "/ui/color-palette" },
+      { title: "Hidden Gems", path: "/ui/hidden-gems" },
     ],
   },
 ];
 ---
 
-<nav class="bg-gray-800 text-white shadow-lg">
+<nav class="z-50 bg-chocolate-800 text-white shadow-lg">
   <div class="container mx-auto px-4">
     <div class="flex justify-between items-center py-4">
-      <a href="/" class="text-xl font-bold">Astro UI Examples</a>
+      <a href="/" class="text-xl font-bold flex items-center">
+        <span class="icon-[mdi--flower] text-2xl mr-2 text-chocolate-300"
+        ></span>
+        T'ika Tailwind
+      </a>
 
       <!-- Mobile menu button -->
       <button id="mobile-menu-button" class="md:hidden focus:outline-none">
@@ -50,21 +57,21 @@ const navItems = [
               {!item.items ? (
                 <a
                   href={item.path}
-                  class="hover:text-cyan-300 transition-colors"
+                  class="hover:text-chocolate-300 transition-colors flex items-center py-2"
                 >
                   {item.title}
                 </a>
               ) : (
                 <>
-                  <button class="hover:text-cyan-300 transition-colors flex items-center gap-1">
+                  <button class="hover:text-chocolate-300 transition-colors flex items-center gap-1 py-2">
                     {item.title}
-                    <span class="icon-[heroicons--chevron-down] text-sm" />
+                    <span class="icon-[heroicons--chevron-down] text-sm transition-transform group-hover:rotate-180" />
                   </button>
-                  <div class="absolute hidden group-hover:block bg-gray-700 rounded-md shadow-lg py-2 min-w-[200px] z-10">
+                  <div class="absolute hidden group-hover:block bg-chocolate-700 rounded-md shadow-lg py-2 min-w-[200px] z-10">
                     {item.items.map((subItem) => (
                       <a
                         href={subItem.path}
-                        class="block px-4 py-2 hover:bg-gray-600 hover:text-cyan-300 transition-colors"
+                        class="block px-4 py-2 hover:bg-chocolate-600 hover:text-chocolate-100 transition-colors"
                       >
                         {subItem.title}
                       </a>
@@ -87,13 +94,13 @@ const navItems = [
               {!item.items ? (
                 <a
                   href={item.path}
-                  class="block px-3 py-2 hover:bg-gray-700 rounded"
+                  class="block px-3 py-2 hover:bg-chocolate-700 rounded"
                 >
                   {item.title}
                 </a>
               ) : (
                 <details class="group">
-                  <summary class="flex justify-between items-center px-3 py-2 hover:bg-gray-700 rounded cursor-pointer">
+                  <summary class="flex justify-between items-center px-3 py-2 hover:bg-chocolate-700 rounded cursor-pointer">
                     <span>{item.title}</span>
                     <span class="icon-[heroicons--chevron-down] text-sm group-open:rotate-180 transition-transform" />
                   </summary>
@@ -101,7 +108,7 @@ const navItems = [
                     {item.items.map((subItem) => (
                       <a
                         href={subItem.path}
-                        class="block px-3 py-2 hover:bg-gray-600 rounded"
+                        class="block px-3 py-2 hover:bg-chocolate-600 rounded"
                       >
                         {subItem.title}
                       </a>
@@ -123,7 +130,7 @@ const navItems = [
     .getElementById("mobile-menu-button")
     .addEventListener("click", () => {
       const menu = document.getElementById("mobile-menu");
-      menu.classList.toggle("hidden");
+      menu?.classList.toggle("hidden");
     });
 </script>
 

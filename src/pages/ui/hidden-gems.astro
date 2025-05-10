@@ -1,0 +1,182 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout>
+  <div class="container mx-auto px-4 py-12 max-w-4xl">
+    <header class="text-center mb-12">
+      <h1 class="text-4xl font-bold text-gray-800 mb-3">
+        Tailwind Hidden Gems
+      </h1>
+      <p class="text-xl text-gray-600">
+        Clases útiles pero poco utilizadas en nuestro proyecto
+      </p>
+    </header>
+
+    <!-- Sección 1: Interactividad Avanzada -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-6 border-b pb-2">
+        Interactividad Avanzada
+      </h2>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Group Hover -->
+        <div
+          class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 group"
+        >
+          <h3
+            class="font-bold text-lg mb-2 group-hover:text-blue-500 transition-colors"
+          >
+            Group Hover
+          </h3>
+          <p class="text-gray-600 mb-4">
+            Efecto que aplica hover al grupo padre
+          </p>
+          <button
+            class="opacity-0 group-hover:opacity-100 transition-opacity bg-blue-500 text-white px-4 py-2 rounded"
+          >
+            Visible solo en hover
+          </button>
+        </div>
+
+        <!-- Focus Within -->
+        <div
+          class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-transparent"
+        >
+          <h3 class="font-bold text-lg mb-2">Focus Within</h3>
+          <p class="text-gray-600 mb-4">
+            Estilo aplicado cuando cualquier hijo tiene focus
+          </p>
+          <input
+            type="text"
+            placeholder="Escribe aquí..."
+            class="w-full px-3 py-2 border border-gray-300 rounded"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección 2: Utilidades Especiales -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-6 border-b pb-2">
+        Utilidades Especiales
+      </h2>
+
+      <div class="grid md:grid-cols-3 gap-4">
+        <!-- Aspect Ratio -->
+        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+          <div
+            class="aspect-video bg-blue-100 rounded-lg mb-2 flex items-center justify-center"
+          >
+            <span class="text-blue-500">16:9</span>
+          </div>
+          <p class="text-sm text-gray-600">aspect-video</p>
+        </div>
+
+        <!-- Line Clamp -->
+        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+          <p class="line-clamp-3 text-gray-600 mb-2">
+            Este texto será truncado después de tres líneas mostrando puntos
+            suspensivos al final cuando exceda el espacio disponible.
+          </p>
+          <p class="text-sm text-gray-600">line-clamp-3</p>
+        </div>
+
+        <!-- Writing Mode -->
+        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+          <p class="[writing-mode:vertical-rl] h-24 text-center text-gray-600">
+            Texto vertical
+          </p>
+          <p class="text-sm text-gray-600">writing-mode</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección 3: Selección Avanzada -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-6 border-b pb-2">
+        Selección Avanzada
+      </h2>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- First-Letter -->
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <p
+            class="first-letter:text-4xl first-letter:font-bold first-letter:text-blue-500"
+          >
+            Esta oración tiene un estilo especial en la primera letra.
+          </p>
+        </div>
+
+        <!-- Selection Styling -->
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <p class="selection:bg-blue-500 selection:text-white">
+            Selecciona este texto para ver el efecto especial.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección 4: Efectos Visuales -->
+    <section>
+      <h2 class="text-2xl font-semibold text-gray-800 mb-6 border-b pb-2">
+        Efectos Visuales
+      </h2>
+
+      <div class="grid md:grid-cols-3 gap-4">
+        <!-- Backdrop Filter -->
+        <div class="relative h-32 rounded-xl overflow-hidden">
+          <img
+            src="https://picsum.photos/400/300"
+            alt="Sample"
+            class="w-full h-full object-cover"
+          />
+          <div
+            class="absolute inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex items-center justify-center"
+          >
+            <span class="text-white font-bold">backdrop-blur-sm</span>
+          </div>
+        </div>
+
+        <!-- Mix Blend Mode -->
+        <div class="relative h-32 rounded-xl overflow-hidden">
+          <div class="absolute inset-0 bg-blue-500 mix-blend-multiply"></div>
+          <img
+            src="https://picsum.photos/400/300"
+            alt="Sample"
+            class="w-full h-full object-cover"
+          />
+        </div>
+
+        <!-- Text Gradient -->
+        <div class="h-32 flex items-center justify-center">
+          <h3
+            class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600"
+          >
+            Gradiente de texto
+          </h3>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  @reference "tailwindcss";
+
+  /* Animación personalizada para demostración */
+  @keyframes ping-slow {
+    0% {
+      transform: scale(0.8);
+      opacity: 0.8;
+    }
+    70%,
+    100% {
+      transform: scale(1.4);
+      opacity: 0;
+    }
+  }
+  .animate-ping-slow {
+    animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+</style>

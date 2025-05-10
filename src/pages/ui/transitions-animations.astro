@@ -1,0 +1,189 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout>
+  <div class="container mx-auto px-4 py-12 max-w-6xl">
+    <header class="text-center mb-12">
+      <h1 class="text-4xl font-bold text-gray-800 mb-3">
+        Transitions & Animations
+      </h1>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Explore las posibilidades de animación con Tailwind CSS
+      </p>
+    </header>
+
+    <!-- Sección de Transiciones Básicas -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-6 border-b pb-2">
+        Transiciones Básicas
+      </h2>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Ejemplo 1 -->
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <div class="w-full h-40 mb-4 flex items-center justify-center">
+            <button
+              class="px-6 py-3 bg-blue-500 text-white rounded-lg transition-all hover:bg-blue-600 hover:scale-105"
+            >
+              Hover me
+            </button>
+          </div>
+          <p class="text-sm text-gray-600">Hover: Cambio de color y escala</p>
+        </div>
+
+        <!-- Ejemplo 2 -->
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <div class="w-full h-40 mb-4 flex items-center justify-center">
+            <button
+              class="px-6 py-3 bg-purple-500 text-white rounded-lg transition-colors duration-300 hover:bg-purple-600"
+            >
+              Slow color change
+            </button>
+          </div>
+          <p class="text-sm text-gray-600">Transición lenta (300ms)</p>
+        </div>
+
+        <!-- Ejemplo 3 -->
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <div class="w-full h-40 mb-4 flex items-center justify-center">
+            <button
+              class="px-6 py-3 bg-green-500 text-white rounded-lg transition-transform hover:rotate-6"
+            >
+              Rotate on hover
+            </button>
+          </div>
+          <p class="text-sm text-gray-600">Transform: Rotación</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Animaciones Personalizadas -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-6 border-b pb-2">
+        Animaciones Personalizadas
+      </h2>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Animación de rebote -->
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <div class="w-full h-48 mb-4 flex items-center justify-center">
+            <div class="animate-bounce w-16 h-16 bg-red-500 rounded-full"></div>
+          </div>
+          <p class="text-sm text-gray-600">Animación de rebote incorporada</p>
+        </div>
+
+        <!-- Animación personalizada -->
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <div class="w-full h-48 mb-4 flex items-center justify-center">
+            <div class="w-16 h-16 bg-yellow-500 rounded-lg animate-spin-slow">
+            </div>
+          </div>
+          <p class="text-sm text-gray-600">Animación personalizada lenta</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Micro-interacciones -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-6 border-b pb-2">
+        Micro-interacciones
+      </h2>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Botón con icono -->
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <button
+            class="flex items-center px-4 py-2 bg-gray-100 rounded-lg transition-all hover:bg-gray-200 group"
+          >
+            <span
+              class="icon-[heroicons--envelope] text-gray-500 group-hover:text-blue-500 mr-2 transition-colors"
+            ></span>
+            Enviar mensaje
+          </button>
+        </div>
+
+        <!-- Tarjeta interactiva -->
+        <div
+          class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transition-all hover:shadow-md hover:-translate-y-1"
+        >
+          <h3 class="font-semibold mb-2">Tarjeta Interactiva</h3>
+          <p class="text-sm text-gray-600">Pasa el cursor para ver el efecto</p>
+        </div>
+
+        <!-- Input animado -->
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <div class="relative">
+            <input
+              type="text"
+              placeholder=" "
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg peer focus:border-blue-500 focus:outline-none"
+            />
+            <label
+              class="absolute left-3 top-2 text-gray-400 transition-all peer-focus:-top-3 peer-focus:text-xs peer-focus:text-blue-500 peer-focus:bg-white peer-focus:px-1 peer-placeholder-shown:top-2"
+            >
+              Nombre completo
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Animaciones en Scroll -->
+    <section>
+      <h2 class="text-2xl font-semibold text-gray-800 mb-6 border-b pb-2">
+        Animaciones al hacer Scroll
+      </h2>
+
+      <div class="space-y-8">
+        <div
+          class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 opacity-0 [animation-fill-mode:forwards] animate-fade-in-up"
+        >
+          <h3 class="font-semibold text-lg mb-2">Elemento 1</h3>
+          <p class="text-gray-600">
+            Aparece con fade-in y movimiento ascendente
+          </p>
+        </div>
+
+        <div
+          class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 opacity-0 [animation-fill-mode:forwards] animate-fade-in-up [animation-delay:200ms]"
+        >
+          <h3 class="font-semibold text-lg mb-2">Elemento 2</h3>
+          <p class="text-gray-600">Aparece con retraso de 200ms</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  @reference "tailwindcss";
+
+  /* Animación de giro lento */
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .animate-spin-slow {
+    animation: spin-slow 3s linear infinite;
+  }
+
+  /* Animaciones para scroll */
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out;
+  }
+</style>

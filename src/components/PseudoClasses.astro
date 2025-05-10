@@ -1,57 +1,137 @@
 ---
 import { generateFakePosts } from "../lib/fakeData";
 
-// Generar datos de prueba
+// Generate mock data
 const posts = generateFakePosts(6);
 const people = posts.slice(0, 6).map((post) => ({
   name: post.author.name,
   email: `${post.author.name.replace(/\s+/g, ".").toLowerCase()}@example.com`,
   imageUrl: post.author.avatar,
+  role: post.author.role,
 }));
 ---
 
-<div>
-  <!-- Sección 1: Lista de autores -->
-  <section>
-    <h2>Autores Destacados</h2>
-    <br />
-    <ul class="flex flex-col">
-      {
-        people.map((person, index) => (
-          <li class="flex gap-x-4 p-2 even:bg-chocolate-300 odd:bg-chocolate-50">
-            <img src={person.imageUrl} alt={person.name} class="w-12 h-12" />
-            <div>
-              <p>{person.name}</p>
-              <p>{person.email}</p>
-            </div>
-          </li>
-        ))
-      }
-    </ul>
+<div class="container mx-auto px-4 py-12 max-w-7xl">
+  <header class="mb-12 text-center">
+    <h1 class="text-4xl font-bold text-chocolate-800 mb-3">
+      Tailwind Pseudo-classes Demo
+    </h1>
+    <p class="text-xl text-chocolate-600 max-w-3xl mx-auto">
+      Exploring advanced selector patterns with Tailwind CSS
+    </p>
+  </header>
+
+  <!-- Authors List Section -->
+  <section class="mb-16">
+    <div class="flex items-center mb-6">
+      <div class="bg-chocolate-100 text-chocolate-800 p-2 rounded-lg mr-4">
+        <span class="icon-[heroicons--users] text-xl"></span>
+      </div>
+      <h2 class="text-2xl font-semibold text-chocolate-800">
+        Featured Authors
+      </h2>
+    </div>
+
+    <div
+      class="bg-white rounded-xl shadow-sm overflow-hidden border border-chocolate-100"
+    >
+      <ul class="divide-y divide-chocolate-100">
+        {
+          people.map((person, index) => (
+            <li
+              class={`flex items-center gap-4 p-4 transition-colors
+            ${index % 2 === 0 ? "bg-chocolate-50 hover:bg-chocolate-100" : "bg-white hover:bg-chocolate-50"}
+            first:bg-chocolate-500 first:text-white first:hover:bg-chocolate-600
+            last:bg-chocolate-200 last:hover:bg-chocolate-300`}
+            >
+              <img
+                src={person.imageUrl}
+                alt={person.name}
+                class="w-12 h-12 rounded-full object-cover border-2 border-chocolate-200"
+                loading="lazy"
+              />
+              <div class="flex-1 min-w-0">
+                <p class="font-medium truncate">{person.name}</p>
+                <p class="text-sm text-chocolate-500 truncate">
+                  {person.email}
+                </p>
+              </div>
+              <span class="text-xs px-2 py-1 rounded-full bg-chocolate-100 text-chocolate-800">
+                {person.role}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </section>
 
-  <!-- Sección 2: Grid de posts -->
-  <br />
-  <br />
-  <br />
-  <section>
-    <h2>Últimos Artículos</h2>
-    <br />
-    <div class="grid grid-cols-3 gap-8">
+  <!-- Articles Grid Section -->
+  <section class="mb-16">
+    <div class="flex items-center mb-6">
+      <div class="bg-chocolate-100 text-chocolate-800 p-2 rounded-lg mr-4">
+        <span class="icon-[heroicons--newspaper] text-xl"></span>
+      </div>
+      <h2 class="text-2xl font-semibold text-chocolate-800">Latest Articles</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {
         posts.map((post, index) => (
-          <article class="bg-chocolate-50 first:bg-chocolate-500 last:bg-blue-500 nth-[3]:bg-green-500 nth-last-[2]:bg-pink-500 rounded-2xl overflow-hidden">
-            <img src={post.image} alt={post.title} width="400" height="300" />
-            <div class="p-4 flex flex-col gap-y-2">
-              <span class="text-xs text-chocolate-400 font-medium">
-                {post.category.name}
-              </span>
-              <h3 class="font-bold uppercase">{post.title}</h3>
-              <div set:html={post.excerpt} />
-              <div>
+          <article
+            class={`rounded-xl shadow-sm overflow-hidden transition-all hover:shadow-md hover:-translate-y-1
+          ${
+            index === 0
+              ? "bg-chocolate-500 text-white"
+              : index === posts.length - 1
+                ? "bg-blue-500 text-white"
+                : index === 2
+                  ? "bg-green-500 text-white"
+                  : index === posts.length - 2
+                    ? "bg-pink-500 text-white"
+                    : "bg-chocolate-50"
+          }`}
+          >
+            <img
+              src={post.image}
+              alt={post.title}
+              class="w-full h-48 object-cover"
+              loading="lazy"
+            />
+            <div class="p-5 space-y-3">
+              <div class="flex justify-between items-center">
+                <span
+                  class={`text-xs font-medium px-2 py-1 rounded-full
+                ${
+                  index === 0
+                    ? "bg-chocolate-600"
+                    : index === posts.length - 1
+                      ? "bg-blue-600"
+                      : index === 2
+                        ? "bg-green-600"
+                        : index === posts.length - 2
+                          ? "bg-pink-600"
+                          : "bg-chocolate-200 text-chocolate-800"
+                }`}
+                >
+                  {post.category.name}
+                </span>
+                {index === 0 && (
+                  <span class="text-xs font-medium bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">
+                    New
+                  </span>
+                )}
+                {index === posts.length - 1 && (
+                  <span class="text-xs font-medium bg-gray-100 text-gray-800 px-2 py-1 rounded-full">
+                    Archive
+                  </span>
+                )}
+              </div>
+              <h3 class="font-bold text-lg">{post.title}</h3>
+              <div class="text-sm line-clamp-2" set:html={post.excerpt} />
+              <div class="flex justify-between items-center text-sm pt-2">
                 <span>{new Date(post.date).toLocaleDateString()}</span>
-                {index === 0 && <span>Nuevo</span>}
-                {index === posts.length - 1 && <span>Antiguo</span>}
+                <span class="text-xs opacity-75">{post.readingTime}</span>
               </div>
             </div>
           </article>
@@ -60,41 +140,71 @@ const people = posts.slice(0, 6).map((post) => ({
     </div>
   </section>
 
-  <!-- Sección 3: Tabla de contenidos -->
+  <!-- Contents Table Section -->
   <section>
-    <h2>Resumen de Contenidos</h2>
-    <br />
-    <br />
+    <div class="flex items-center mb-6">
+      <div class="bg-chocolate-100 text-chocolate-800 p-2 rounded-lg mr-4">
+        <span class="icon-[heroicons--table-cells] text-xl"></span>
+      </div>
+      <h2 class="text-2xl font-semibold text-chocolate-800">Content Summary</h2>
+    </div>
 
-    <table class="rounded-2xl overflow-hidden">
-      <thead
-        class="uppercase font-bold border-b border-b-chocolate-900 bg-chocolate-500"
-      >
-        <tr class="rounded-2xl">
-          <th class="py-2 px-4">Título</th>
-          <th class="py-2 px-4">Autor</th>
-          <th class="py-2 px-4">Categoría</th>
-          <th class="py-2 px-4">Fecha</th>
-        </tr>
-      </thead>
-      <tbody>
-        {
-          posts.map((post, index) => (
-            <tr class="even:bg-chocolate-100 rounded-2xl">
-              <td class="p-2 border-r md:border-r-chocolate-300">
-                {post.title}
-              </td>
-              <td class="p-2 md:border-r md:border-r-chocolate-300 text-center">
-                {post.author}
-              </td>
-              <td class="p-2 md:border-r md:border-r-chocolate-300">
-                {post.category.name}
-              </td>
-              <td class="p-2">{new Date(post.date).toLocaleDateString()}</td>
-            </tr>
-          ))
-        }
-      </tbody>
-    </table>
+    <div
+      class="bg-white rounded-xl shadow-sm overflow-hidden border border-chocolate-100"
+    >
+      <table class="min-w-full divide-y divide-chocolate-100">
+        <thead class="bg-chocolate-500">
+          <tr>
+            <th
+              scope="col"
+              class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider"
+            >
+              Title
+            </th>
+            <th
+              scope="col"
+              class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider"
+            >
+              Author
+            </th>
+            <th
+              scope="col"
+              class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider"
+            >
+              Category
+            </th>
+            <th
+              scope="col"
+              class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider"
+            >
+              Date
+            </th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-chocolate-100">
+          {
+            posts.map((post, index) => (
+              <tr
+                class={`transition-colors hover:bg-chocolate-50
+              ${index % 2 === 0 ? "bg-chocolate-50" : "bg-white"}`}
+              >
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-chocolate-900">
+                  {post.title}
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-chocolate-500 text-center">
+                  {post.author.name}
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-chocolate-500">
+                  {post.category.name}
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-chocolate-500">
+                  {new Date(post.date).toLocaleDateString()}
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
   </section>
 </div>

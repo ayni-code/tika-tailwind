@@ -17,29 +17,64 @@ interface Props {
 const { title, date, excerpt, slug, image, author, category } = Astro.props;
 ---
 
-<article class="card">
-  {image && <img src={image} alt={title} class="card-image" />}
+<article class="card hover:shadow-lg transition-shadow duration-300">
+  {
+    image && (
+      <img
+        src={image}
+        alt={title}
+        class="card-image hover:scale-105 transition-transform duration-500"
+        loading="lazy"
+      />
+    )
+  }
 
   <div class="card-content">
-    {category && <span class="card-content-category">{category.name}</span>}
+    {
+      category && (
+        <span class="card-content-category hover:text-orange-600 transition-colors">
+          {category.name}
+        </span>
+      )
+    }
 
-    <h2 class="card-content-title">
-      <a href={`/blog/${slug}`}>{title}</a>
+    <h2 class="card-content-title group">
+      <a
+        href={`/blog/${slug}`}
+        class="group-hover:text-orange-500 transition-colors"
+      >
+        {title}
+      </a>
     </h2>
+
     <div class="card-content-excerpt" set:html={excerpt} />
-    <div></div>
-    <a href={`/blosg/${slug}`} class="card-content-button">Read more</a>
+
+    <a
+      href={`/blog/${slug}`}
+      class="card-content-button hover:bg-orange-500 hover:text-white hover:border-transparent transition-colors"
+    >
+      Read more
+      <span class="icon-[heroicons--arrow-right] ml-2"></span>
+    </a>
   </div>
 
   <div class="card-footer">
-    <time datetime={date} class="card-footer-item card-footer-left"
-      >{new Date(date).toLocaleDateString()}</time
+    <time
+      datetime={date}
+      class="card-footer-item card-footer-left hover:bg-orange-600 transition-colors"
     >
-    <div class="card-footer-item card-footer-middle">
-      {author && <span> by {author}</span>}
+      {new Date(date).toLocaleDateString()}
+    </time>
+    <div
+      class="card-footer-item card-footer-middle hover:bg-orange-600 transition-colors"
+    >
+      {author && <span>by {author}</span>}
     </div>
-    <div class="card-footer-item card-footer-right">
-      Comment &&{(<span> 13</span>)}
+    <div
+      class="card-footer-item card-footer-right hover:bg-orange-600 transition-colors"
+    >
+      <span class="icon-[heroicons--chat-bubble-oval-left] mr-1"></span>
+      <span>13</span>
     </div>
   </div>
 </article>
@@ -48,39 +83,48 @@ const { title, date, excerpt, slug, image, author, category } = Astro.props;
   @reference "tailwindcss";
 
   .card {
-    @apply rounded-md shadow-2xl overflow-hidden;
+    @apply rounded-xl shadow-xl overflow-hidden bg-white;
+    transition: all 0.3s ease;
   }
+
   .card-image {
-    @apply w-full aspect-video object-cover;
+    @apply w-full aspect-video object-cover transition-transform duration-500;
   }
+
   .card-content {
-    @apply flex flex-col md:flex-col p-8 gap-y-4;
+    @apply flex flex-col p-6 gap-y-4;
   }
+
   .card-content-category {
-    @apply text-center text-orange-500 text-sm font-bold uppercase;
+    @apply self-center text-orange-500 text-xs font-bold uppercase tracking-wider px-2 py-1;
   }
+
   .card-content-title {
-    @apply text-center text-3xl font-bold;
+    @apply text-2xl font-bold text-gray-800 text-center;
   }
+
   .card-content-excerpt {
-    @apply text-center text-gray-500;
+    @apply text-gray-600 text-center line-clamp-3;
   }
+
   .card-content-button {
-    @apply mx-auto text-center p-8 border-1 border-gray-500 rounded-md;
+    @apply mx-auto inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg 
+           text-gray-700 font-medium text-sm mt-2;
   }
+
   .card-footer {
-    @apply grid grid-cols-1 md:grid-cols-3 bg-orange-500;
+    @apply grid grid-cols-1 md:grid-cols-3 bg-orange-500 text-sm;
   }
+
   .card-footer-item {
-    @apply px-4 py-8 text-center text-white;
+    @apply px-4 py-3 text-center text-white flex items-center justify-center;
   }
+
   .card-footer-left {
-    @apply border-b-1 md:border-b-0 border-b-orange-700 md:border-r-1 md:border-r-orange-700;
+    @apply border-b md:border-b-0 md:border-r border-orange-600;
   }
-  /* .card-footer-middle {
-    @apply;
-  } */
+
   .card-footer-right {
-    @apply border-t-1 md:border-t-0 border-t-orange-700 md:border-l-1 md:border-l-orange-700;
+    @apply border-t md:border-t-0 md:border-l border-orange-600;
   }
 </style>

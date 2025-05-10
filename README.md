@@ -1,88 +1,105 @@
 # 🌸 T'ika Tailwind (Flower Tailwind) 🌱
 
-**Exploring all Tailwind CSS features through the Quechua concept of Ayni**  
-_A community-built resource for learning Tailwind CSS through reciprocity and collective growth_
+**Explorando todas las características de Tailwind CSS a través del concepto Quechua de Ayni**  
+_Un recurso construido por la comunidad para aprender Tailwind CSS mediante reciprocidad y crecimiento colectivo_
 
-## 🌿 About This Project
+## 🌿 Sobre este proyecto
 
-T'ika Tailwind (Quechua for "Flower Tailwind") is an open collection of UI examples and patterns built with Tailwind CSS, inspired by the Andean principle of **Ayni** - reciprocal community support. This project grows like a flower, with each contributor adding their knowledge to help others blossom in their Tailwind journey.
+T'ika Tailwind (quechua para "Viento Flor") es una colección abierta de ejemplos y patrones de UI construidos con Tailwind CSS, inspirados en el principio andino de **Ayni** - apoyo comunitario recíproco. Este proyecto crece como una flor, donde cada contribuyente añade su conocimiento para ayudar a otros a florecer en su viaje con Tailwind.
 
-## ✨ Featured Examples
+## ✨ Ejemplos destacados
 
-### 🌼 Blog Components
+### 🌼 Componentes de Blog
 
-- [Grid Layout](/blog/grid-layout) - Beautiful blog layouts using CSS Grid
-- [Flex Layout](/blog/flex-layout) - Responsive designs with Flexbox
-- [Complete Post](/blog/post) - Full-featured article template
+- [Diseño Grid](/blog/grid-layout) - Layouts de blog usando CSS Grid
+- [Diseño Flex](/blog/flex-layout) - Diseños responsivos con Flexbox
+- [Post Completo](/blog/post) - Plantilla de artículo con todos los elementos
 
-### 🔐 Login Screens
+### 🔐 Pantallas de Login
 
-- [Basic Login](/login/basic) - Clean, minimalist form
-- [Modern Login](/login/modern) - Contemporary design
-- [Animated Login](/login/animated) - With subtle animations
-- [Glassmorphism](/login/glassmorphism) - Frosted glass effect
+- [Login Básico](/login/basic) - Formulario minimalista
+- [Login Moderno](/login/modern) - Diseño contemporáneo
+- [Login Animado](/login/animated) - Con animaciones sutiles
+- [Glassmorphism](/login/glassmorphism) - Efecto vidrio esmerilado
 
-### 🎨 UI Components
+### 🎨 Componentes UI
 
-- [Buttons](/ui/buttons-example) - Variants, states and styles
-- [Forms](/ui/form-styling) - Styling and validation examples
-- [Pseudo-classes](/ui/pseudo-classes-demo) - Advanced Tailwind selectors
+- [Botones](/ui/buttons-example) - Variantes, estados y estilos
+- [Formularios](/ui/form-styling) - Estilos y validaciones
+- [Pseudo-clases](/ui/pseudo-classes-demo) - Selectores avanzados
+- [Transiciones](/ui/transitions-animations) - Animaciones y efectos
+- [Paleta de Colores](/ui/color-palette) - Sistema de diseño cromático
+- [Hidden Gems](/ui/hidden-gems) - Clases poco utilizadas pero poderosas
 
-## 🛠️ Development Setup
+## 🛠️ Configuración de desarrollo
 
-1. **Clone the repository**
+1. **Clona el repositorio**
 
    ```bash
    git clone https://github.com/ayni-code/tika-tailwind.git
    cd tika-tailwind
    ```
 
-2. **Install dependencies**
+2. **Instala dependencias**
 
    ```bash
    npm install
    ```
 
-3. **Start the development server**
+3. **Inicia el servidor de desarrollo**
 
    ```bash
    npm run dev
    ```
 
-4. **Open in browser**
+4. **Abre en el navegador**
    ```
    http://localhost:3000
    ```
 
-## 🌈 Recommended Tools
+## 🌈 Herramientas recomendadas
 
-Enhance your development experience with these VS Code extensions:
+Mejora tu experiencia de desarrollo con estas extensiones de VS Code:
 
-- [Astro VSCode](https://marketplace.visualstudio.com/items/?itemName=astro-build.astro-vscode) - Official Astro support
-- [Chicha Theme](https://marketplace.visualstudio.com/items/?itemName=benitoanagua.chicha-vscode-theme) - Warm color scheme
-- [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items/?itemName=bradlc.vscode-tailwindcss) - Tailwind autocompletion
+- [Astro VSCode](https://marketplace.visualstudio.com/items/?itemName=astro-build.astro-vscode) - Soporte oficial para Astro
+- [Chicha Theme](https://marketplace.visualstudio.com/items/?itemName=benitoanagua.chicha-vscode-theme) - Tema de colores cálidos
+- [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items/?itemName=bradlc.vscode-tailwindcss) - Autocompletado para Tailwind
 
-## 🤝 How to Contribute
+## 🤝 Cómo contribuir
 
-We welcome all contributions following the spirit of Ayni:
+Aceptamos todas las contribuciones siguiendo el espíritu de Ayni:
 
-1. **Add a new example** - Create a new component or pattern
-2. **Improve existing examples** - Enhance documentation or accessibility
-3. **Fix issues** - Help solve problems others encounter
-4. **Share knowledge** - Add comments explaining techniques
+1. **Añade un nuevo ejemplo** - Crea un componente o patrón nuevo
+2. **Mejora ejemplos existentes** - Documentación o accesibilidad
+3. **Soluciona problemas** - Ayuda a resolver issues
+4. **Comparte conocimiento** - Añade comentarios explicando técnicas
 
-Please read our [Contribution Guidelines](CONTRIBUTING.md) before submitting a pull request.
+Por favor lee nuestras [Guías de Contribución](CONTRIBUTING.md) antes de enviar un pull request.
 
-## 📜 License
+## 📜 Licencia
 
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+Este proyecto está bajo **Licencia MIT** - ver el archivo [LICENSE](LICENSE) para detalles.
 
-## 🌸 Acknowledgments
+## 🌸 Agradecimientos
 
-- To the Quechua people for the concept of Ayni
-- The Tailwind CSS team for their amazing framework
-- All contributors who help this garden grow
+- Al pueblo Quechua por el concepto de Ayni
+- Al equipo de Tailwind CSS por su increíble framework
+- A todos los contribuyentes que ayudan a este jardín a crecer
 
 ---
 
-_May this project blossom like the flowers of the Andes, nourished by our collective knowledge._ 🌱
+_Que este proyecto florezca como las flores de los Andes, nutrido por nuestro conocimiento colectivo._ 🌱
+
+## 🌐 Estructura del proyecto
+
+```
+src/
+├── components/    # Componentes reutilizables
+├── layouts/       # Plantillas base
+├── lib/           # Funciones y datos
+├── pages/         # Todas las páginas
+│   ├── blog/      # Ejemplos de blog
+│   ├── login/     # Pantallas de login
+│   └── ui/        # Componentes UI
+└── styles/        # Estilos globales
+```

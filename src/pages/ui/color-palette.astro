@@ -1,0 +1,101 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout>
+  <div class="container mx-auto px-4 py-12 max-w-6xl">
+    <header class="text-center mb-12">
+      <h1 class="text-4xl font-bold text-gray-800 mb-3">Color Palette</h1>
+      <p class="text-xl text-gray-600">Sistema de colores y aplicaciones</p>
+    </header>
+
+    <!-- Chocolate Palette -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-6 border-b pb-2">
+        Chocolate Theme
+      </h2>
+
+      <div
+        class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-10 gap-2 mb-8"
+      >
+        <div class="h-24 bg-chocolate-50 rounded shadow"></div>
+        <div class="h-24 bg-chocolate-100 rounded shadow"></div>
+        <div class="h-24 bg-chocolate-200 rounded shadow"></div>
+        <div class="h-24 bg-chocolate-300 rounded shadow"></div>
+        <div class="h-24 bg-chocolate-400 rounded shadow"></div>
+        <div class="h-24 bg-chocolate-500 rounded shadow"></div>
+        <div class="h-24 bg-chocolate-600 rounded shadow"></div>
+        <div class="h-24 bg-chocolate-700 rounded shadow"></div>
+        <div class="h-24 bg-chocolate-800 rounded shadow"></div>
+        <div class="h-24 bg-chocolate-900 rounded shadow"></div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-chocolate-500 text-white p-6 rounded-lg">
+          <h3 class="text-xl font-bold mb-2">Primary Color</h3>
+          <p>Used for main actions and highlights</p>
+        </div>
+        <div class="bg-chocolate-100 text-chocolate-800 p-6 rounded-lg">
+          <h3 class="text-xl font-bold mb-2">Secondary Color</h3>
+          <p>Used for backgrounds and subtle elements</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Color Usage -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-6 border-b pb-2">
+        Color Usage
+      </h2>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="space-y-4">
+          <h3 class="font-bold text-lg">Text Colors</h3>
+          <p class="text-chocolate-900">Primary Text</p>
+          <p class="text-chocolate-600">Secondary Text</p>
+          <p class="text-chocolate-400">Disabled Text</p>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-bold text-lg">Backgrounds</h3>
+          <div class="flex items-center gap-2">
+            <div class="w-6 h-6 rounded bg-chocolate-100"></div>
+            <span>Light BG</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="w-6 h-6 rounded bg-chocolate-500"></div>
+            <span>Primary BG</span>
+          </div>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-bold text-lg">States</h3>
+          <div class="flex items-center gap-2">
+            <div class="w-6 h-6 rounded bg-green-500"></div>
+            <span>Success</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="w-6 h-6 rounded bg-red-500"></div>
+            <span>Error</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Color Contrast -->
+    <section>
+      <h2 class="text-2xl font-semibold text-gray-800 mb-6 border-b pb-2">
+        Color Contrast
+      </h2>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-chocolate-800 text-white p-6 rounded-lg">
+          <h3 class="text-xl font-bold mb-2">Dark Background</h3>
+          <p>Use white or light text for readability</p>
+        </div>
+        <div class="bg-chocolate-100 text-chocolate-900 p-6 rounded-lg">
+          <h3 class="text-xl font-bold mb-2">Light Background</h3>
+          <p>Use dark text for optimal contrast</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>

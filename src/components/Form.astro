@@ -1,350 +1,383 @@
-<!-- src/components/Form.astro -->
-<div class="container mx-auto max-w-3xl px-4 py-8">
-  <h1 class="text-3xl font-bold text-gray-800 dark:text-white mb-8">
-    Guía de Estilos para Formularios
-  </h1>
+---
 
-  <!-- Formulario Básico -->
-  <section class="mb-12">
-    <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
-      1. Formulario Básico
-    </h2>
-    <div class="space-y-4">
-      <div>
-        <label
-          for="basic-name"
-          class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-        >
-          Nombre completo
-          <span class="text-red-500">*</span>
-        </label>
-        <input
-          type="text"
-          id="basic-name"
-          placeholder="Ej: Juan Pérez"
-          required
-          class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 invalid:border-red-500 invalid:text-red-600 peer"
-        />
+---
+
+<div class="container mx-auto px-4 py-12 max-w-4xl">
+  <header class="mb-12 text-center">
+    <h1 class="text-4xl font-bold text-gray-800 mb-3">Form Design System</h1>
+    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+      A collection of accessible, customizable form components with validation
+      states
+    </p>
+  </header>
+
+  <div
+    class="bg-white rounded-xl shadow-sm p-8 border border-gray-100 space-y-12"
+  >
+    <!-- Basic Form Section -->
+    <section>
+      <div class="flex items-center mb-6">
+        <div class="bg-blue-100 text-blue-800 p-2 rounded-lg mr-4">
+          <span class="icon-[heroicons--document-text] text-xl"></span>
+        </div>
+        <h2 class="text-2xl font-semibold text-gray-800">
+          Basic Form Elements
+        </h2>
       </div>
 
-      <div>
-        <label
-          for="basic-email"
-          class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-          >Email</label
-        >
-        <input
-          type="email"
-          id="basic-email"
-          placeholder="ejemplo@dominio.com"
-          class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 invalid:border-red-500 peer"
-        />
-        <p class="mt-1 text-sm text-red-600 hidden peer-invalid:block">
-          Por favor ingresa un email válido
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Formulario con Iconos -->
-  <section class="mb-12">
-    <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
-      2. Campos con Iconos
-    </h2>
-    <div class="space-y-4">
-      <div>
-        <label
-          for="icon-username"
-          class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-          >Usuario</label
-        >
-        <div class="relative rounded-md shadow-sm">
-          <div
-            class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
-          >
-            <span class="text-gray-500">👤</span>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="space-y-5">
+          <!-- Text Input -->
+          <div class="form-group">
+            <label for="basic-name" class="form-label">
+              Full Name <span class="text-red-500">*</span>
+            </label>
+            <div class="relative">
+              <input
+                type="text"
+                id="basic-name"
+                placeholder="John Doe"
+                required
+                class="form-input peer"
+              />
+              <span class="form-input-icon">
+                <span class="icon-[heroicons--user]"></span>
+              </span>
+            </div>
           </div>
-          <input
-            type="text"
-            id="icon-username"
-            placeholder="Tu nombre de usuario"
-            class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-          />
+
+          <!-- Email Input -->
+          <div class="form-group">
+            <label for="basic-email" class="form-label">
+              Email Address <span class="text-red-500">*</span>
+            </label>
+            <div class="relative">
+              <input
+                type="email"
+                id="basic-email"
+                placeholder="your@email.com"
+                required
+                class="form-input peer invalid:border-red-300 invalid:text-red-500"
+              />
+              <span class="form-input-icon">
+                <span class="icon-[heroicons--envelope]"></span>
+              </span>
+            </div>
+            <p class="mt-1 text-sm text-red-500 hidden peer-invalid:block">
+              Please enter a valid email address
+            </p>
+          </div>
+        </div>
+
+        <div class="space-y-5">
+          <!-- Password Input -->
+          <div class="form-group">
+            <label for="basic-password" class="form-label">
+              Password <span class="text-red-500">*</span>
+            </label>
+            <div class="relative">
+              <input
+                type="password"
+                id="basic-password"
+                placeholder="••••••••"
+                required
+                class="form-input peer"
+              />
+              <span class="form-input-icon">
+                <span class="icon-[heroicons--lock-closed]"></span>
+              </span>
+              <button
+                type="button"
+                class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              >
+                <span class="icon-[heroicons--eye]"></span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Select Input -->
+          <div class="form-group">
+            <label for="basic-country" class="form-label">
+              Country <span class="text-red-500">*</span>
+            </label>
+            <div class="relative">
+              <select
+                id="basic-country"
+                required
+                class="form-input appearance-none pr-10"
+              >
+                <option value="" disabled selected>Select your country</option>
+                <option>United States</option>
+                <option>Canada</option>
+                <option>Mexico</option>
+                <option>United Kingdom</option>
+              </select>
+              <span class="form-select-icon">
+                <span class="icon-[heroicons--chevron-down]"></span>
+              </span>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div>
-        <label
-          for="icon-password"
-          class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-          >Contraseña</label
-        >
-        <div class="relative rounded-md shadow-sm">
-          <div
-            class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
-          >
-            <span class="text-gray-500">🔒</span>
+    <!-- Checkbox and Radio Groups -->
+    <section>
+      <div class="flex items-center mb-6">
+        <div class="bg-purple-100 text-purple-800 p-2 rounded-lg mr-4">
+          <span class="icon-[heroicons--check-circle] text-xl"></span>
+        </div>
+        <h2 class="text-2xl font-semibold text-gray-800">Selection Controls</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <fieldset class="space-y-4">
+          <legend class="form-legend">Notification Preferences</legend>
+
+          <div class="flex items-center">
+            <input
+              type="checkbox"
+              id="push-notifications"
+              class="form-checkbox"
+              checked
+            />
+            <label for="push-notifications" class="form-checkbox-label">
+              Push Notifications
+            </label>
           </div>
+
+          <div class="flex items-center">
+            <input
+              type="checkbox"
+              id="email-notifications"
+              class="form-checkbox"
+            />
+            <label for="email-notifications" class="form-checkbox-label">
+              Email Notifications
+            </label>
+          </div>
+
+          <div class="flex items-center">
+            <input
+              type="checkbox"
+              id="sms-notifications"
+              class="form-checkbox"
+            />
+            <label for="sms-notifications" class="form-checkbox-label">
+              SMS Alerts
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="space-y-4">
+          <legend class="form-legend">Preferred Contact Method</legend>
+
+          <div class="flex items-center">
+            <input
+              type="radio"
+              id="contact-email"
+              name="contact-method"
+              class="form-radio"
+              checked
+            />
+            <label for="contact-email" class="form-radio-label"> Email </label>
+          </div>
+
+          <div class="flex items-center">
+            <input
+              type="radio"
+              id="contact-phone"
+              name="contact-method"
+              class="form-radio"
+            />
+            <label for="contact-phone" class="form-radio-label"> Phone </label>
+          </div>
+
+          <div class="flex items-center">
+            <input
+              type="radio"
+              id="contact-sms"
+              name="contact-method"
+              class="form-radio"
+            />
+            <label for="contact-sms" class="form-radio-label">
+              Text Message
+            </label>
+          </div>
+        </fieldset>
+      </div>
+    </section>
+
+    <!-- Complete Form Example -->
+    <section>
+      <div class="flex items-center mb-6">
+        <div class="bg-green-100 text-green-800 p-2 rounded-lg mr-4">
+          <span class="icon-[heroicons--clipboard-document-check] text-xl"
+          ></span>
+        </div>
+        <h2 class="text-2xl font-semibold text-gray-800">Registration Form</h2>
+      </div>
+
+      <form class="space-y-6">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="form-group">
+            <label for="reg-first-name" class="form-label">First Name</label>
+            <input
+              type="text"
+              id="reg-first-name"
+              class="form-input"
+              placeholder="John"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="reg-last-name" class="form-label">Last Name</label>
+            <input
+              type="text"
+              id="reg-last-name"
+              class="form-input"
+              placeholder="Doe"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="reg-email" class="form-label">Email</label>
           <input
-            type="password"
-            id="icon-password"
-            placeholder="••••••••"
-            class="block w-full pl-10 pr-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            type="email"
+            id="reg-email"
+            class="form-input peer"
+            placeholder="your@email.com"
+            required
           />
-          <button
-            type="button"
-            class="absolute inset-y-0 right-0 pr-3 flex items-center"
-          >
-            <span class="text-gray-500 hover:text-gray-700 cursor-pointer"
-              >👁️</span
+          <p class="mt-1 text-sm text-red-500 hidden peer-invalid:block">
+            Please enter a valid email address
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label for="reg-password" class="form-label">Create Password</label>
+          <div class="relative">
+            <input
+              type="password"
+              id="reg-password"
+              class="form-input pr-10"
+              placeholder="••••••••"
+            />
+            <button
+              type="button"
+              class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
             >
+              <span class="icon-[heroicons--eye]"></span>
+            </button>
+          </div>
+          <p class="mt-1 text-xs text-gray-500">
+            Minimum 8 characters with at least one number
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label for="reg-bio" class="form-label">About You</label>
+          <textarea
+            id="reg-bio"
+            rows="3"
+            class="form-input"
+            placeholder="Tell us about yourself..."></textarea>
+        </div>
+
+        <div class="flex items-start">
+          <div class="flex items-center h-5">
+            <input
+              id="reg-terms"
+              name="terms"
+              type="checkbox"
+              class="form-checkbox"
+              required
+            />
+          </div>
+          <div class="ml-3 text-sm">
+            <label for="reg-terms" class="form-checkbox-label">
+              I agree to the <a
+                href="#"
+                class="text-blue-600 hover:text-blue-500 underline"
+                >Terms of Service</a
+              > and <a
+                href="#"
+                class="text-blue-600 hover:text-blue-500 underline"
+                >Privacy Policy</a
+              >
+            </label>
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <button type="submit" class="form-submit-button group">
+            Create Account
+            <span
+              class="icon-[heroicons--arrow-right] ml-2 group-hover:translate-x-1 transition-transform"
+            ></span>
           </button>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Select y Textarea -->
-  <section class="mb-12">
-    <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
-      3. Select y Textarea
-    </h2>
-    <div class="grid md:grid-cols-2 gap-4 mb-4">
-      <div>
-        <label
-          for="country"
-          class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-          >País</label
-        >
-        <select
-          id="country"
-          class="mt-1 block w-full pl-3 pr-10 py-2 text-base border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 rounded-md"
-        >
-          <option>Selecciona un país</option>
-          <option>México</option>
-          <option>España</option>
-          <option>Argentina</option>
-          <option>Colombia</option>
-        </select>
-      </div>
-
-      <div>
-        <label
-          for="language"
-          class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-          >Idioma</label
-        >
-        <select
-          id="language"
-          class="mt-1 block w-full pl-3 pr-10 py-2 text-base border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 rounded-md"
-        >
-          <option>Español</option>
-          <option>Inglés</option>
-          <option>Francés</option>
-        </select>
-      </div>
-    </div>
-
-    <div>
-      <label
-        for="message"
-        class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-        >Mensaje</label
-      >
-      <textarea
-        id="message"
-        rows="4"
-        placeholder="Escribe tu mensaje aquí..."
-        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-      ></textarea>
-    </div>
-  </section>
-
-  <!-- Checkboxes y Radios -->
-  <section class="mb-12">
-    <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
-      4. Checkboxes y Radios
-    </h2>
-
-    <fieldset class="mb-6">
-      <legend class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-        >Preferencias de notificación</legend
-      >
-      <div class="space-y-2">
-        <div class="flex items-center">
-          <input
-            id="push-notifications"
-            name="push-notifications"
-            type="checkbox"
-            class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-          />
-          <label
-            for="push-notifications"
-            class="ml-2 block text-sm text-gray-700 dark:text-gray-300"
-          >
-            Notificaciones push
-          </label>
-        </div>
-
-        <div class="flex items-center">
-          <input
-            id="email-notifications"
-            name="email-notifications"
-            type="checkbox"
-            checked
-            class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-          />
-          <label
-            for="email-notifications"
-            class="ml-2 block text-sm text-gray-700 dark:text-gray-300"
-          >
-            Notificaciones por email
-          </label>
-        </div>
-      </div>
-    </fieldset>
-
-    <fieldset>
-      <legend class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-        >Método de contacto preferido</legend
-      >
-      <div class="space-y-2">
-        <div class="flex items-center">
-          <input
-            id="contact-email"
-            name="contact-method"
-            type="radio"
-            checked
-            class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-          />
-          <label
-            for="contact-email"
-            class="ml-2 block text-sm text-gray-700 dark:text-gray-300"
-          >
-            Email
-          </label>
-        </div>
-
-        <div class="flex items-center">
-          <input
-            id="contact-phone"
-            name="contact-method"
-            type="radio"
-            class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-          />
-          <label
-            for="contact-phone"
-            class="ml-2 block text-sm text-gray-700 dark:text-gray-300"
-          >
-            Teléfono
-          </label>
-        </div>
-      </div>
-    </fieldset>
-  </section>
-
-  <!-- Formulario de Registro Completo -->
-  <section>
-    <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
-      5. Formulario Completo
-    </h2>
-
-    <form class="space-y-4">
-      <div class="grid md:grid-cols-2 gap-4">
-        <div>
-          <label
-            for="first-name"
-            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-            >Nombre</label
-          >
-          <input
-            type="text"
-            id="first-name"
-            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-          />
-        </div>
-
-        <div>
-          <label
-            for="last-name"
-            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-            >Apellido</label
-          >
-          <input
-            type="text"
-            id="last-name"
-            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-          />
-        </div>
-      </div>
-
-      <div>
-        <label
-          for="email"
-          class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-          >Email</label
-        >
-        <input
-          type="email"
-          id="email"
-          class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 invalid:border-red-500 peer"
-        />
-        <p class="mt-1 text-sm text-red-600 hidden peer-invalid:block">
-          Por favor ingresa un email válido
-        </p>
-      </div>
-
-      <div>
-        <label
-          for="password"
-          class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-          >Contraseña</label
-        >
-        <input
-          type="password"
-          id="password"
-          class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-        />
-      </div>
-
-      <div>
-        <label
-          for="about"
-          class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-          >Acerca de ti</label
-        >
-        <textarea
-          id="about"
-          rows="3"
-          class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-        ></textarea>
-      </div>
-
-      <div class="flex items-center">
-        <input
-          id="terms"
-          name="terms"
-          type="checkbox"
-          class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-        />
-        <label
-          for="terms"
-          class="ml-2 block text-sm text-gray-700 dark:text-gray-300"
-        >
-          Acepto los <a href="#" class="text-blue-600 hover:text-blue-500"
-            >términos y condiciones</a
-          >
-        </label>
-      </div>
-
-      <div>
-        <button
-          type="submit"
-          class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-        >
-          Registrarse
-        </button>
-      </div>
-    </form>
-  </section>
+      </form>
+    </section>
+  </div>
 </div>
+
+<style>
+  @reference "tailwindcss";
+
+  /* Form Group */
+  .form-group {
+    @apply space-y-1;
+  }
+
+  /* Labels */
+  .form-label {
+    @apply block text-sm font-medium text-gray-700;
+  }
+  .form-legend {
+    @apply text-sm font-medium text-gray-700 mb-2;
+  }
+
+  /* Input Fields */
+  .form-input {
+    @apply block w-full px-4 py-2.5 border border-gray-300 rounded-lg shadow-sm 
+           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
+           transition-all placeholder-gray-400;
+  }
+
+  /* Input Icons */
+  .form-input-icon {
+    @apply absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400;
+  }
+  .form-select-icon {
+    @apply absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none;
+  }
+
+  /* Checkboxes & Radios */
+  .form-checkbox {
+    @apply h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded;
+  }
+  .form-radio {
+    @apply h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300;
+  }
+  .form-checkbox-label {
+    @apply ml-2 block text-sm text-gray-700;
+  }
+  .form-radio-label {
+    @apply ml-2 block text-sm text-gray-700;
+  }
+
+  /* Submit Button */
+  .form-submit-button {
+    @apply w-full flex justify-center items-center px-6 py-3 border border-transparent 
+           rounded-lg shadow-sm text-base font-medium text-white bg-blue-600 
+           hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 
+           focus:ring-blue-500 transition-colors;
+  }
+
+  /* Focus states */
+  .peer:focus ~ .form-input-icon {
+    @apply text-blue-500;
+  }
+</style>
